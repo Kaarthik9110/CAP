@@ -1,12 +1,12 @@
 class Solution:
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         res=[]
-        def inorder(root):
+        def preorder(root):
             if not root:
                 return
             else:
                 res.append(root.val)
-                inorder(root.left)
-                inorder(root.right)
-        inorder(root)
+                preorder(root.left)
+                preorder(root.right)
+        preorder(root)
         return res
