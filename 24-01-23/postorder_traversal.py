@@ -1,12 +1,12 @@
 class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         res=[]
-        def inorder(root):
-            if not root:
-                return
+        def postorder(node):
+            if not node:
+                return 0
             else:
-                inorder(root.left)
-                inorder(root.right)
-                res.append(root.val)
-        inorder(root)
+                postorder(node.left)
+                postorder(node.right)
+                res.append(node.val)
+        postorder(root)
         return res
