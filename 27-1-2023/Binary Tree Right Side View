@@ -1,0 +1,48 @@
+Binary Tree Right Side View
+Given the root of a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom.
+
+ 
+
+Example 1:
+
+
+Input: root = [1,2,3,null,5,null,4]
+Output: [1,3,4]
+class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+         List<Integer>list1=new ArrayList<>();
+        if(root==null)
+        {
+            return list1;
+        }
+        Queue <TreeNode> queue=new LinkedList<>();
+        queue.add(root); 
+        while(!queue.isEmpty())
+            {
+           
+            int size=queue.size();
+                for(int i=1;i<=size;i++)
+                {
+                    TreeNode pres=queue.remove();
+                    if(i==size){
+                        list1.add(pres.val);
+
+                    }
+                    
+                    
+                if(pres.left!=null){
+                    queue.add(pres.left);
+                }
+                
+                if(pres.right!=null)
+                    {
+                    queue.add(pres.right);
+                    }
+                
+                }
+
+            }
+             return list1;
+            
+    }
+}
