@@ -1,0 +1,42 @@
+class Solution {
+    List<Integer>list=new ArrayList<>();
+      int c=0;
+     public boolean isValidBST(TreeNode root) {
+       
+         
+         if(root==null){
+             return false;
+         }
+         valid(root);
+         if(list.size()==1){
+             return true;
+         }
+         int size=list.size();
+         for(int i=0;i<size-1;i++){
+             if(list.get(i)==list.get(i+1)){
+                 c+=1;
+             }
+             }
+             if(c==size-1){
+                 return false;
+             }
+             for(int i=0;i<size-1;i++){
+                if(list.get(i)>=list.get(i+1)){
+                 return false;
+             }
+             }
+             return true;
+             }
+             
+     
+        
+        public void valid(TreeNode root){
+            if(root==null){
+                return;
+            }
+            valid(root.left);
+            list.add(root.val);
+            valid(root.right);
+        }
+ 
+}
