@@ -1,0 +1,56 @@
+530. Minimum Absolute Difference in BST
+Given the root of a Binary Search Tree (BST), return the minimum absolute difference between the values of any two different nodes in the tree.
+Example 1:
+Input: root = [4,2,6,1,3]
+Output: 1
+
+class Solution {
+   TreeNode pre=null;
+   int max=Integer.MAX_VALUE;
+    public int getMinimumDifference(TreeNode root) {
+        mindiff(root);
+        return max;
+    }
+    public void mindiff(TreeNode root){
+        if(root==null){
+            return;
+        }
+        mindiff(root.left);
+        if(pre!=null){
+            max=Math.min(max,Math.abs(root.val-pre.val));
+        }
+        pre=root;
+        mindiff(root.right);
+
+    }
+}
+
+
+or
+
+
+
+class Solution {
+    List<Integer>list=new ArrayList<>();
+    int h=Integer.MAX_VALUE;
+    public int getMinimumDifference(TreeNode root) {
+        mindiff(root);
+        int size=list.size();
+        for(int i=1;i<size;i++){
+            int diff = Math.abs(list.get(i - 1) - list.get(i));
+            if(h>diff){
+                h=diff;
+            }
+
+        }
+        return h;
+    }
+    public void mindiff(TreeNode root){
+        if(root==null){
+            return;
+        }
+        mindiff(root.left);
+        list.add(root.val);
+        mindiff(root.right);
+    }
+}
