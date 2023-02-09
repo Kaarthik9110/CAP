@@ -1,0 +1,69 @@
+200. Number of Islands
+Medium
+18.8K
+420
+Companies
+Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
+
+An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+Example 1:
+Input: grid = [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+]
+Output: 1
+
+class Pair{
+    int row;
+    int col;
+    Pair(int row,int col){
+        this.row=row;
+        this.col=col;
+    }
+}
+class Solution {
+    Queue<Pair>q=new LinkedList<>();
+  
+    int n,m;
+    int x[]={-1,0,1,0};
+    int y[]={0,1,0,-1};
+    public int numIslands(char[][] grid) {
+          int t=0;
+         m=grid.length;
+         n=grid[0].length;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]=='1'){
+                    grid[i][j]='0';
+                    q.add(new Pair(i,j));
+                    t++;
+                    island(grid);
+                }
+            }
+        }
+        return t;
+    }
+    public void island(char[][]grid){
+        while(!q.isEmpty()){
+            int size=q.size();
+            for(int ni=0;ni<size;ni++){
+                Pair p=q.poll();
+                int a=p.row;
+                int b=p.col;
+                for(int j=0;j<4;j++){
+                    int r=a+x[j];
+                    int c=b+y[j];
+                    if(r>=0&&c>=0&&r<m&&c<n){
+                        if(grid[r][c]=='1'){
+                            grid[r][c]='0';
+                            q.add(new Pair(r,c));
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}
